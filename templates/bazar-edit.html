@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block 'title' %}Edit Bazar | Droupadi Mess{% endblock 'title' %}
+
+{% block 'content' %}
+
+<div class="entry-content">
+
+    <div class="links">
+        {% with request.resolver_match.url_name as url_name %}
+            <ul>
+                <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
+                <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
+                <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazars</a></li>
+            </ul>
+        {% endwith %}
+    </div>
+
+    
+    
+        
+    <div class="bazar-list">
+        <form method="post">
+            {% csrf_token %}
+            <label for="datepicker" class="form-label">Date</label>
+            <input type="text" name="date" class="form-control mb-4" value="{{get_date}}" placeholder="YYYY-MM-DD" required disabled>
+            
+            {% for mill in mills %}
+                <div class="user-item">
+                    <label>{{ mill.user.first_name }}</label>
+                    <select name="m-{{mill.id}}" class="form-select">
+                        <option value="2" {% if mill.mill_count == 2 %}selected{% endif %}>2</option>
+                        <option value="1" {% if mill.mill_count == 1 %}selected{% endif %}>1</option>
+                        <option value="0" {% if mill.mill_count == 0 %}selected{% endif %}>0</option>
+                        <option value="3" {% if mill.mill_count == 3 %}selected{% endif %}>3</option>
+                        <option value="4" {% if mill.mill_count == 4 %}selected{% endif %}>4</option>
+                    </select>
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn btn-primary w-100 mt-3">Update</button>
+        </form>
+        
+    </div>
+
+        
+    
+
+
+</div>
+
+
+    
+<script>
+    $(function () {
+        var enabledDates = [
+            {% for booking in bookings %}
+                "{{booking.date|date:'Y-m-d'}}",
+            {% endfor %}
+            
+        ];
+        var addedDates = [
+            {% for bazar in bazars %}
+                "{{bazar.date|date:'Y-m-d'}}",
+            {% endfor %}
+        ];
+
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            // hideIfNoPrevNext: true,
+            // minDate: "0",
+            // maxDate: "+1w",
+            beforeShowDay: function(date) {
+                // Specify the dates you want to enable
+                var stringDate = $.datepicker.formatDate("yy-mm-dd", date);
+                return [enabledDates.indexOf(stringDate) != -1, addedDates.indexOf(stringDate) != -1 ? 'added' : ''];
+            }
+        });
+    });
+</script>
+
+{% endblock 'content' %}

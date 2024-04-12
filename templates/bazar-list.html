@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}Bazar List | Mess{% endblock 'title' %}
+
+{% block 'content' %}
+
+<div class="entry-content">
+    
+    <div class="links">
+        {% with request.resolver_match.url_name as url_name %}
+        <ul>
+            <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
+            <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
+            <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazar</a></li>
+        </ul>
+        {% endwith %}
+    </div>
+    
+    
+    
+    <!-- <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="text-primary">Book Date</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="datepicker" class="form-label">Date</label>
+                <input type="text" name="date" class="form-control mb-2" id="datepicker" placeholder="YYYY-MM-DD" required>
+                
+                <button type="submit" class="btn btn-primary w-100 mt-3">Book</button>
+            </form>
+        </div>
+    </div> -->
+
+    {% if bazars %}
+        <div class="d-flex justify-content-between">
+            <h2>Your Bazar</h2>
+            <h2>₹ {{ total_bazar }}</h2>
+        </div>
+        {% for bazar in bazars %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center"><i class="fa-solid fa-calendar-days"></i> <span class="fw-medium ms-1">{{ bazar.date|date:'M d, Y' }}</span></div>
+                        <div><span class="fw-medium">₹ {{ bazar.amount }}</span></div>
+                        <div class="actions">
+                            <a href="{% url 'bazar-edit' bazar.id %}"><i class="fa-light fa-pen-to-square"></i></a>
+                            <a href="{% url 'delete-bazar' bazar.id %}"><i class="fa-light fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h6>You don't have any bazar yet.</h6>
+
+    {% endif %}
+
+    
+    {% if bookings %}
+         <div class="d-flex justify-content-between mt-5">
+            <h2>Upcoming Bookings</h2>
+        </div>
+        {% for booking in bookings %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center"><i class="fa-solid fa-calendar-days"></i> <span class="fw-medium ms-1">{{ booking.date|date:'M d, Y' }}</span></div>
+                        <div class="actions">
+                            <a href="{% url 'delete-booking' booking.id %}"><i class="fa-light fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+        
+
+
+</div>
+
+
+
+    
+
+<script>
+    $(function () {
+        var specificDates = {
+            {% for booking in bookings %}
+                "{{booking.date|date:'Y-m-d'}}": "{{booking.user.first_name}}",
+            {% endfor %}
+        };
+
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            // hideIfNoPrevNext: true,
+            // minDate: "-4d",
+            // maxDate: "+4d",
+            beforeShowDay: function(date) {
+                var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+                if (specificDates[dateString]) {
+                    return [false, 'booked', specificDates[dateString]];
+                }
+                return [true, '', ''];
+            }
+        });
+
+        
+    });
+</script>
+
+{% endblock 'content' %}

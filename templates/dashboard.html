@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block 'title' %}Dashboard | Droupadi Mess{% endblock 'title' %}
+
+{% block 'content' %}
+
+    <div class="entry-content">
+        <div class="d-flex justify-content-between">
+            <h2>Dashboard</h2>
+        </div>
+
+        <div class="row g-2">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body dash-box">
+                        <div class="icn bg-info text-light"><i class="fa-solid fa-wallet"></i></div>
+                        <div>
+                            <h6 class="mb-0">₹ {{ total_bazar }}</h6>
+                            <span>Total Balance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body dash-box">
+                        <div class="icn bg-primary"><i class="fa-solid fa-pot-food text-light"></i></div>
+                        <div>
+                            <h6 class="mb-0">{{ total_mill }}</h6>
+                            <span>Total Meal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock 'content' %}
+    

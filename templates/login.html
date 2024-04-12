@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Login | Mess</title>
+	<link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/fontawesome/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/swiper.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+	
+
+    <main class="site">
+        <div class="login-content center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 login-form">
+                        <div class="text-center mb-3">
+                            <img src="/static/images/login.png" alt="">
+                        </div>
+
+                        <h1 class="text-center">Log in</h1>
+                        <p class="text-center mb-4">Enter your details to continue</p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3 input-box">
+                                <label for="mobile">Enter Your Mobile Number</label>
+                                <input type="text" id="mobile" name="username" placeholder="Mobile Number" maxlength="10">
+                                <i class="fa-solid fa-phone"></i>
+                                <p class="err-msg text-danger"></p>
+                            </div>                           
+                            
+                            <div class="mb-3 position-relative">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Password">
+                                <button class="eye-btn" id="eye-btn"><i class="fa-solid fa-eye"></i></button>
+                            </div>
+
+                            <p class="text-end mb-3"><a href="#">Forgot Password?</a></p>
+
+                            <button type="submit" class="btn btn-primary w-100">Log in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    
+	
+
+    
+
+	<script src="/static/js/bootstrap.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="/static/js/script.js"></script>
+</body>
+
+</html>

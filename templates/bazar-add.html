@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}Add Bazar | Droupadi Mess{% endblock 'title' %}
+
+
+{% block 'content' %}
+
+<div class="entry-content">
+
+    <div class="links">
+        {% with request.resolver_match.url_name as url_name %}
+            <ul>
+                <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
+                <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
+                <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazars</a></li>
+            </ul>
+        {% endwith %}
+    </div>
+
+    
+    {% if bazar_date %}
+        <div class="bazar-list">
+            <form method="post">
+                {% csrf_token %}
+                <label for="datepicker" class="form-label">Date</label>
+                <input type="text" name="date" class="form-control mb-4" value="{{bazar_date}}" placeholder="YYYY-MM-DD" required>
+                
+                {% for user in users %}
+                    <div class="user-item">
+                        <label>{{ user.first_name }}</label>
+                        <select name="m-{{user.id}}" class="form-select">
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary w-100 mt-3">Add</button>
+            </form>
+            
+        </div>
+    {% else %}
+        <p>You don't have any booking</p>
+    {% endif %}
+        
+    
+
+
+</div>
+
+
+    
+<script>
+    $(function () {
+        var enabledDates = [
+            {% for booking in bookings %}
+                "{{booking.date|date:'Y-m-d'}}",
+            {% endfor %}
+            
+        ];
+        var addedDates = [
+            {% for bazar in bazars %}
+                "{{bazar.date|date:'Y-m-d'}}",
+            {% endfor %}
+        ];
+
+        $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd",
+            // hideIfNoPrevNext: true,
+            // minDate: "0",
+            // maxDate: "+1w",
+            beforeShowDay: function(date) {
+                // Specify the dates you want to enable
+                var stringDate = $.datepicker.formatDate("yy-mm-dd", date);
+                return [enabledDates.indexOf(stringDate) != -1, addedDates.indexOf(stringDate) != -1 ? 'added' : ''];
+            }
+        });
+    });
+</script>
+
+{% endblock 'content' %}

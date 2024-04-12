@@ -1,0 +1,433 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #111B21;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  color: #656565;
+}
+
+p {
+  color: #111B21;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #7a52f4;
+}
+a:hover {
+  color: #ef4e22;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 50px;
+}
+
+h4 {
+  font-size: 45px;
+}
+
+h6 {
+  font-size: 24px;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  line-height: 1.2;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.btn {
+  border-radius: 30px;
+  font-weight: 500;
+  padding: 10px 35px;
+}
+
+.btn-lg {
+  min-width: 230px;
+}
+
+.btn-primary {
+  border-color: #7a52f4;
+  background-color: #7a52f4;
+}
+.btn-primary:hover {
+  background-color: #563aac;
+  border-color: #563aac;
+}
+
+.container {
+  max-width: 1170px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pad {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.toppad {
+  padding-top: 90px;
+}
+
+.bottompad {
+  padding-bottom: 90px;
+}
+
+.text-primary {
+  color: #7a52f4 !important;
+}
+
+.bg-primary {
+  background-color: #7a52f4 !important;
+}
+
+.bg-ingo {
+  background-color: #5db6d2 !important;
+}
+
+.form-label {
+  color: #080a0b;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  border-radius: 30px;
+  height: 45px;
+}
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #7a52f4;
+}
+
+.table th {
+  font-weight: 600;
+}
+
+.card {
+  border-radius: 30px;
+  border: 0.5px solid #e5e4ec;
+}
+
+.card-body {
+  padding: 15px 15px;
+}
+
+/*-------------------------------------------------------------------
+##Base
+------------------------------------------------------------------------*/
+.page-header {
+  padding: 15px 15px;
+  top: 0;
+  width: 100%;
+}
+
+.page-title a {
+  color: #000;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.page-title span {
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.page-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 15px 15px;
+  box-shadow: 0 0 5px #ececec;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.icons {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.icons li a {
+  font-size: 20px;
+  color: #b7b7b7;
+}
+.icons li a:hover, .icons li a.active {
+  color: #7a52f4;
+}
+
+#backbtn {
+  background-color: transparent;
+  border: none;
+  margin-right: 15px;
+}
+
+.entry-content {
+  padding: 0px 15px 20px;
+  margin: 0 0 60px;
+  position: relative;
+}
+.entry-content::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(to bottom, #DAD5FB, #fff);
+  position: absolute;
+  top: -70px;
+  left: 0;
+  z-index: -1;
+}
+
+.links ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding-left: 0;
+  margin-bottom: 25px;
+}
+.links ul li a {
+  color: #83818e;
+  font-size: 15px;
+  font-weight: 300;
+}
+.links ul li a.active, .links ul li a:hover {
+  color: #000;
+  font-weight: 400;
+}
+
+/*---------------------------------------------------------------------------------------
+#Login Page
+----------------------------------------------------------------------------------------*/
+.login-content {
+  height: 100vh;
+}
+
+.login-form {
+  padding: 30px 20px;
+}
+.login-form h1 {
+  color: #000;
+  font-weight: 700;
+  font-size: 32px;
+}
+.login-form p {
+  color: #5d5d5b;
+  font-size: 14px;
+}
+.login-form label {
+  color: #080a0b;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.login-form input {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #e3e3e3;
+  border-radius: 30px;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #080a0b;
+  outline: none;
+}
+
+.eye-btn {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  position: absolute;
+  top: 37px;
+  right: 15px;
+  color: #5d5d5b;
+}
+
+.input-box {
+  position: relative;
+}
+.input-box i {
+  position: absolute;
+  top: 41px;
+  right: 15px;
+  color: #5d5d5b;
+}
+
+/*----------------------------------------------------------------------
+##Profile Page
+------------------------------------------------------------------------*/
+.profile-img img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.profile-img h6 {
+  color: #303030;
+  font-weight: 700;
+}
+
+/*----------------------------------------------------------------------
+#Bazar Page
+--------------------------------------------------------------------------*/
+.user-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.user-item label {
+  min-width: 100px;
+}
+
+/*-------------------------------------------------------------------
+#Datepickers
+----------------------------------------------------------------------------*/
+.ui-datepicker {
+  width: 100% !important;
+}
+
+.ui-datepicker-calendar tr th {
+  width: 14.28% !important;
+}
+.ui-datepicker-calendar tr td {
+  padding-bottom: 10px !important;
+  background-color: #ddd;
+  position: relative !important;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+.ui-datepicker-calendar tr td a, .ui-datepicker-calendar tr td span {
+  font-weight: 600 !important;
+}
+.ui-datepicker-calendar tr td:not(.ui-state-disabled) {
+  background-color: #61b146 !important;
+}
+.ui-datepicker-calendar tr td:not(.ui-state-disabled) a, .ui-datepicker-calendar tr td:not(.ui-state-disabled) span {
+  color: #fff !important;
+}
+.ui-datepicker-calendar tr td.ui-datepicker-today, .ui-datepicker-calendar tr td.ui-datepicker-current-day {
+  background-color: #7a52f4 !important;
+}
+.ui-datepicker-calendar tr td.ui-datepicker-today a, .ui-datepicker-calendar tr td.ui-datepicker-today span, .ui-datepicker-calendar tr td.ui-datepicker-current-day a, .ui-datepicker-calendar tr td.ui-datepicker-current-day span {
+  color: #fff !important;
+}
+.ui-datepicker-calendar tr td::after {
+  content: attr(title);
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+.ui-datepicker-calendar tr td.added {
+  background-color: #ef3224 !important;
+  opacity: 0.8 !important;
+}
+.ui-datepicker-calendar tr td.added a, .ui-datepicker-calendar tr td.added span {
+  color: #fff !important;
+}
+.ui-datepicker-calendar tr td.booked {
+  background-color: #eebd12 !important;
+  opacity: 1 !important;
+}
+.ui-datepicker-calendar tbody tr:last-child td:last-child {
+  border-radius: 0 0 15px 0;
+}
+.ui-datepicker-calendar tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 15px;
+}
+
+.ui-widget-header {
+  border: none !important;
+  background: transparent !important;
+}
+
+.ui-widget.ui-widget-content {
+  border: 1px solid #eee !important;
+  border-radius: 15px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+  background-color: transparent;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  border: none !important;
+}
+
+/*--------------------------------------------------------------------
+#Bazar Page
+-----------------------------------------------------------------------*/
+.actions {
+  display: flex;
+  gap: 10px;
+}
+.actions a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E9E6F7;
+  border-radius: 50%;
+  color: #151521;
+}
+
+/*-----------------------------------------------------------------------------
+#Dashboard
+-------------------------------------------------------------------------------*/
+.dash-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dash-box .icn {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.dash-box span {
+  color: #5d5d5b;
+  font-size: 14px;
+  font-weight: 500;
+}/*# sourceMappingURL=style.css.map */

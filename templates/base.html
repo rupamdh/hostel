@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>{% block 'title' %}{% endblock 'title' %}</title>
+	<link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/static/fontawesome/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/swiper.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+	
+
+    <main class="site">
+        <div class="page-content">
+            <div class="d-flex justify-content-between align-items-center page-header">
+                <div class="page-title">
+                    <button id="backbtn"><i class="fa-solid fa-arrow-left"></i></button>
+                    <span>{% block 'name' %}{% endblock 'name' %}</span>
+                </div>
+
+                <div class="profile">
+                    <span class="me-2">Hi, <span class="text-uppercase">{{ request.user.first_name }}</span></span><a href="{% url 'profile' %} "><img src="/static/images/user.jpg" alt=""></a>
+                </div>
+            </div>
+
+            {% block 'banner' %}{% endblock 'banner' %}
+            
+            {% block 'content' %}{% endblock 'content' %}
+            <div class="page-footer">
+                <ul class="icons">
+                    {% with request.resolver_match.url_name as ur %}
+                        <li><a href="{% url 'dashboard' %}" class="{% if ur == 'dashboard' %}active{% endif %}"><i class="fa-solid fa-house"></i></a></li>
+                        <li><a href="{% url 'bazar-list' %}" class="{% if ur == 'bazar-add' or ur == 'bazar-book' or ur == 'bazar-list' %}active{% endif %}"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                        <li><a href="{% url 'mill' %}" class="{% if ur == 'mill' %}active{% endif %}"><i class="fa-solid fa-pot-food"></i></a></li>
+                        <li><a href="{% url 'profile' %}" class="{% if ur == 'profile' %}active{% endif %}"><i class="fa-solid fa-user"></i></a></li>
+                    {% endwith %}
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    
+    
+	
+
+    
+
+	<script src="/static/js/bootstrap.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="/static/js/script.js"></script>
+</body>
+
+</html>

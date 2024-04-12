@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block 'title' %}
+    Profile
+{% endblock 'title' %}
+{% block 'name' %}Profile{% endblock 'name' %}
+
+{% block 'content' %}
+    
+
+    <div class="entry-content">
+        <div class="text-center profile-img mb-3">
+            <img src="/static/images/user.jpg" alt="" class="mb-2">
+            <h6>{{ request.user.first_name }} {{ request.user.last_name }}</h6>
+        </div>
+
+        <div class="profile-options">
+            <div class="item">
+                <div class="icon">
+
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'logout' %}" class="btn btn-primary w-100">Log out</a>
+    </div>
+
+    
+{% endblock 'content' %}
+    
