@@ -8,28 +8,14 @@
     
     <div class="links">
         {% with request.resolver_match.url_name as url_name %}
-        <ul>
-            <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
-            <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
-            <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazar</a></li>
-        </ul>
+            <ul>
+                <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
+                <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
+                <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazar</a></li>
+            </ul>
         {% endwith %}
     </div>
     
-    
-    
-    <!-- <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="text-primary">Book Date</h2>
-            <form method="post">
-                {% csrf_token %}
-                <label for="datepicker" class="form-label">Date</label>
-                <input type="text" name="date" class="form-control mb-2" id="datepicker" placeholder="YYYY-MM-DD" required>
-                
-                <button type="submit" class="btn btn-primary w-100 mt-3">Book</button>
-            </form>
-        </div>
-    </div> -->
 
     {% if bazars %}
         <div class="d-flex justify-content-between">
