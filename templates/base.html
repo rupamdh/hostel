@@ -6,7 +6,6 @@
 	<link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/static/fontawesome/css/all.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/swiper.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -42,7 +41,7 @@
                     {% with request.resolver_match.url_name as ur %}
                         <li><a href="{% url 'dashboard' %}" class="{% if ur == 'dashboard' %}active{% endif %}"><i class="fa-solid fa-house"></i></a></li>
                         <li><a href="{% url 'bazar-list' %}" class="{% if ur == 'bazar-add' or ur == 'bazar-book' or ur == 'bazar-list' %}active{% endif %}"><i class="fa-solid fa-bag-shopping"></i></a></li>
-                        <li><a href="{% url 'mill' %}" class="{% if ur == 'mill' %}active{% endif %}"><i class="fa-solid fa-pot-food"></i></a></li>
+                        <li><a href="{% url 'est-list' %}" class="{% if ur == 'est-list' %}active{% endif %}"><i class="fa-regular fa-money-bills"></i></a></li>
                         <li><a href="{% url 'profile' %}" class="{% if ur == 'profile' %}active{% endif %}"><i class="fa-solid fa-user"></i></a></li>
                     {% endwith %}
                 </ul>
@@ -57,7 +56,6 @@
     
 
 	<script src="/static/js/bootstrap.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<script src="/static/js/script.js"></script>
 </body>
 

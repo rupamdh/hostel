@@ -118,7 +118,8 @@ h2, h3, h4, h5, h6{
     font-weight: 500;
     margin-bottom: 5px;
 }
-.form-control{
+.form-control,
+.form-select{
     border-radius: 30px;
     height: 45px;
     &:focus{
@@ -332,93 +333,93 @@ h2, h3, h4, h5, h6{
 /*-------------------------------------------------------------------
 #Datepickers
 ----------------------------------------------------------------------------*/
-.ui-datepicker{
-    width: 100% !important;
-}
-.ui-datepicker-calendar{
-    tr{
-        th{
-            width: 14.28% !important;
-        }
-        td{
-            padding-bottom: 10px !important;
-            background-color: #ddd;
-            position: relative !important;
-            border-right: 1px solid $white;
-            border-bottom: 1px solid $white;
-            a, span{
-                font-weight: 600 !important;
-            }
-            &:not(.ui-state-disabled){
-                background-color: $success !important;
-                a, span{
-                    color: $white !important;
-                }
-            }
-            &.ui-datepicker-today,
-            &.ui-datepicker-current-day{
-                background-color: $primary !important;
-                a, span{
-                    color: $white !important;
-                }
-            }
-            
-            &::after{
-                content: attr(title);
-                text-transform: uppercase;
-                font-size: 11px;
-                color: $white;
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 0;
-            }
-
-            &.added{
-                background-color: #ef3224 !important;
-                opacity: 0.8 !important;
-                a, span{
-                    color: $white !important;
-                }
-            }
-            &.booked{
-                background-color: #eebd12 !important;
-                opacity: 1 !important;
-            }
-            
-            
-        }
+.book-bazar{
+    .ui-datepicker{
+        width: 100% !important;
     }
-    tbody{
-        tr:last-child{
+    .ui-datepicker-calendar{
+        tr{
+            th{
+                width: 14.28% !important;
+            }
             td{
-              &:last-child{
-                border-radius: 0 0 15px 0;
-              }
-              &:first-child{
-                border-radius: 0 0 0 15px;
-              } 
+                padding-bottom: 10px !important;
+                background-color: #ddd;
+                position: relative !important;
+                border-right: 1px solid $white;
+                border-bottom: 1px solid $white;
+                a, span{
+                    font-weight: 600 !important;
+                }
+                &:not(.ui-state-disabled){
+                    background-color: $success !important;
+                    a, span{
+                        color: $white !important;
+                    }
+                }
+                &.ui-datepicker-today,
+                &.ui-datepicker-current-day{
+                    background-color: $primary !important;
+                    a, span{
+                        color: $white !important;
+                    }
+                }
+                
+                &::after{
+                    content: attr(title);
+                    text-transform: uppercase;
+                    font-size: 11px;
+                    color: $white;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: 0;
+                }
+
+                &.added{
+                    background-color: #ef3224 !important;
+                    opacity: 0.8 !important;
+                    a, span{
+                        color: $white !important;
+                    }
+                }
+                &.booked{
+                    background-color: #eebd12 !important;
+                    opacity: 1 !important;
+                }
+                
+                
+            }
+        }
+        tbody{
+            tr:last-child{
+                td{
+                &:last-child{
+                    border-radius: 0 0 15px 0;
+                }
+                &:first-child{
+                    border-radius: 0 0 0 15px;
+                } 
+                }
             }
         }
     }
+    .ui-widget-header{
+        border: none !important;
+        background: transparent !important;
+    }
+    .ui-widget.ui-widget-content{
+        border: 1px solid #eee !important;
+        border-radius: 15px;
+    }
+    .ui-state-default, .ui-widget-content .ui-state-default{
+        background-color: transparent;
+    }
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+        border: none !important;
+    }
 }
 
-.ui-widget-header{
-    border: none !important;
-    background: transparent !important;
-}
-.ui-widget.ui-widget-content{
-    border: 1px solid #eee !important;
-    border-radius: 15px;
-}
-
-.ui-state-default, .ui-widget-content .ui-state-default{
-    background-color: transparent;
-}
-
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
-    border: none !important;
-}
 
 
 
@@ -457,5 +458,8 @@ h2, h3, h4, h5, h6{
         color: #5d5d5b;
         font-size: 14px;
         font-weight: 500;
+    }
+    h6{
+        font-size: 20px;
     }
 }

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.db.models import Sum
 
 c_m = datetime.now().month
@@ -13,27 +13,52 @@ c_y = datetime.now().year
 def home_page(request):
     return render(request, 'index.html')
 
-
-
 @login_required
 def dashboard(request):
     bazars = Bazar.objects.filter(date__month=c_m, user_id=request.user.id)
     total_bazar = bazars.aggregate(Sum('amount'))['amount__sum'] if bazars else 0
     mills = Mill.objects.filter(user_id=request.user.id)
     total_mill = mills.aggregate(Sum('mill_count'))['mill_count__sum'] if mills else 0
+    exps = Establish.objects.filter(date__month=c_m, user_id=request.user.id)
+    total_exp = exps.aggregate(Sum('amount'))['amount__sum'] if exps else 0
+    total_diposit = total_bazar+total_exp
+
+    upc_bazar = Bazar.objects.filter(date__month=c_m, date__gte =datetime.now(), user_id=request.user.id, amount=0)
+    today_bazar = Bazar.objects.get(date=datetime.today())
+    tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day =datetime.now().day+1)
+    
+    
 
 
     data = {
-        'total_bazar' : total_bazar,
-        'total_mill' : total_mill
+        'total_diposit' : total_diposit,
+        'total_mill' : total_mill,
+        'upc_bazar' : upc_bazar,
+        'today_bazar' : today_bazar,
+        'tmr_bazar' : tmr_bazar
     }
     return render(request, 'dashboard.html', data)
 
 
 @login_required
+def quick_book(request):
+    try:
+        Bazar.objects.create(
+            date=datetime.today() + timedelta(days=1),
+            user=request.user,
+            amount=0
+        )
+        return redirect('dashboard')
+    except:
+        return redirect('dashboard')
+    
+
+
+
+@login_required
 def bazar_add(request):
     users = User.objects.all().exclude(is_superuser=True).order_by('id')
-    bazars = Bazar.objects.filter(date__month=c_m, date__lt=datetime.now(), user_id=request.user.id, amount=0)
+    bazars = Bazar.objects.filter(date__month=c_m, date__lte =datetime.now(), user_id=request.user.id, amount=0)
 
     dates = []
     for bazar in bazars:
@@ -151,4 +176,63 @@ def bazar_edit(request, id):
 
 @login_required
 def mill_list(request):
-    return render(request, 'mill.html')
+    mills = Mill.objects.filter(date__month=c_m, user_id=request.user.id)
+    total_mill = mills.aggregate(Sum('mill_count'))['mill_count__sum']
+    
+    data = {
+        'mills' : mills,
+        'total_mill' : total_mill
+    }
+    return render(request, 'mill.html', data)
+
+@login_required
+def add_est(request):
+    if request.method == 'POST':
+        Establish.objects.create(
+            date=request.POST['date'],
+            user=request.user,
+            reasone=request.POST['reasone'],
+            amount=request.POST['amount']
+        )
+    return render(request, 'est-add.html')
+
+@login_required
+def est_list(request):
+    exps = Establish.objects.filter(date__month=c_m, user_id=request.user.id)
+
+    data = {
+        'exps' : exps
+    }
+    return render(request, 'est-list.html', data)
+
+@login_required
+def est_edit(request, id):
+    exp = Establish.objects.get(id=id)
+    if request.method == 'POST':
+        exp.date = request.POST['date']
+        exp.reasone = request.POST['reasone']
+        exp.amount = request.POST['amount']
+        exp.save()
+        return redirect('est-list')
+
+    data = {
+        'exp' : exp
+    }
+    return render(request, 'est-edit.html', data)
+
+@login_required
+def est_delete(request, id):
+    exp = Establish.objects.get(id=id)
+    exp.delete()
+
+    return redirect('est-list')
+
+
+
+
+
+
+
+
+
+

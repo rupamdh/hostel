@@ -19,10 +19,22 @@ class Bazar(models.Model):
     def __str__(self):
         return f'{self.date} - {self.user} - {self.amount}'
 
-class Booking(models.Model):
-    date = models.DateField(unique=True)
+
+
+class Establish(models.Model):
+    EST_CHOICES = (
+        ("GG", "Ginger & Garlic"),
+        ("OI", "Oil"),
+        ("CH", "Green Chilli"),
+        ("GS", "Gas"),
+        ("OT", "Other"),
+    )
+
+    date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reasone = models.CharField(max_length=2, choices=EST_CHOICES)
+    amount = models.IntegerField()
 
     def __str__(self):
-        return f'{self.date} - {self.user}'
+        return f'{self.date} - {self.user} - {self.amount}'
 

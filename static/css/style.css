@@ -119,11 +119,13 @@ h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 
-.form-control {
+.form-control,
+.form-select {
   border-radius: 30px;
   height: 45px;
 }
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
   box-shadow: none;
   border: 1px solid #7a52f4;
 }
@@ -317,36 +319,35 @@ h2, h3, h4, h5, h6 {
 /*-------------------------------------------------------------------
 #Datepickers
 ----------------------------------------------------------------------------*/
-.ui-datepicker {
+.book-bazar .ui-datepicker {
   width: 100% !important;
 }
-
-.ui-datepicker-calendar tr th {
+.book-bazar .ui-datepicker-calendar tr th {
   width: 14.28% !important;
 }
-.ui-datepicker-calendar tr td {
+.book-bazar .ui-datepicker-calendar tr td {
   padding-bottom: 10px !important;
   background-color: #ddd;
   position: relative !important;
   border-right: 1px solid #fff;
   border-bottom: 1px solid #fff;
 }
-.ui-datepicker-calendar tr td a, .ui-datepicker-calendar tr td span {
+.book-bazar .ui-datepicker-calendar tr td a, .book-bazar .ui-datepicker-calendar tr td span {
   font-weight: 600 !important;
 }
-.ui-datepicker-calendar tr td:not(.ui-state-disabled) {
+.book-bazar .ui-datepicker-calendar tr td:not(.ui-state-disabled) {
   background-color: #61b146 !important;
 }
-.ui-datepicker-calendar tr td:not(.ui-state-disabled) a, .ui-datepicker-calendar tr td:not(.ui-state-disabled) span {
+.book-bazar .ui-datepicker-calendar tr td:not(.ui-state-disabled) a, .book-bazar .ui-datepicker-calendar tr td:not(.ui-state-disabled) span {
   color: #fff !important;
 }
-.ui-datepicker-calendar tr td.ui-datepicker-today, .ui-datepicker-calendar tr td.ui-datepicker-current-day {
+.book-bazar .ui-datepicker-calendar tr td.ui-datepicker-today, .book-bazar .ui-datepicker-calendar tr td.ui-datepicker-current-day {
   background-color: #7a52f4 !important;
 }
-.ui-datepicker-calendar tr td.ui-datepicker-today a, .ui-datepicker-calendar tr td.ui-datepicker-today span, .ui-datepicker-calendar tr td.ui-datepicker-current-day a, .ui-datepicker-calendar tr td.ui-datepicker-current-day span {
+.book-bazar .ui-datepicker-calendar tr td.ui-datepicker-today a, .book-bazar .ui-datepicker-calendar tr td.ui-datepicker-today span, .book-bazar .ui-datepicker-calendar tr td.ui-datepicker-current-day a, .book-bazar .ui-datepicker-calendar tr td.ui-datepicker-current-day span {
   color: #fff !important;
 }
-.ui-datepicker-calendar tr td::after {
+.book-bazar .ui-datepicker-calendar tr td::after {
   content: attr(title);
   text-transform: uppercase;
   font-size: 11px;
@@ -356,39 +357,35 @@ h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   bottom: 0;
 }
-.ui-datepicker-calendar tr td.added {
+.book-bazar .ui-datepicker-calendar tr td.added {
   background-color: #ef3224 !important;
   opacity: 0.8 !important;
 }
-.ui-datepicker-calendar tr td.added a, .ui-datepicker-calendar tr td.added span {
+.book-bazar .ui-datepicker-calendar tr td.added a, .book-bazar .ui-datepicker-calendar tr td.added span {
   color: #fff !important;
 }
-.ui-datepicker-calendar tr td.booked {
+.book-bazar .ui-datepicker-calendar tr td.booked {
   background-color: #eebd12 !important;
   opacity: 1 !important;
 }
-.ui-datepicker-calendar tbody tr:last-child td:last-child {
+.book-bazar .ui-datepicker-calendar tbody tr:last-child td:last-child {
   border-radius: 0 0 15px 0;
 }
-.ui-datepicker-calendar tbody tr:last-child td:first-child {
+.book-bazar .ui-datepicker-calendar tbody tr:last-child td:first-child {
   border-radius: 0 0 0 15px;
 }
-
-.ui-widget-header {
+.book-bazar .ui-widget-header {
   border: none !important;
   background: transparent !important;
 }
-
-.ui-widget.ui-widget-content {
+.book-bazar .ui-widget.ui-widget-content {
   border: 1px solid #eee !important;
   border-radius: 15px;
 }
-
-.ui-state-default, .ui-widget-content .ui-state-default {
+.book-bazar .ui-state-default, .book-bazar .ui-widget-content .ui-state-default {
   background-color: transparent;
 }
-
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+.book-bazar .ui-state-default, .book-bazar .ui-widget-content .ui-state-default, .book-bazar .ui-widget-header .ui-state-default, .book-bazar .ui-button, .book-bazar html .ui-button.ui-state-disabled:hover, .book-bazar html .ui-button.ui-state-disabled:active {
   border: none !important;
 }
 
@@ -430,4 +427,7 @@ h2, h3, h4, h5, h6 {
   color: #5d5d5b;
   font-size: 14px;
   font-weight: 500;
+}
+.dash-box h6 {
+  font-size: 20px;
 }/*# sourceMappingURL=style.css.map */

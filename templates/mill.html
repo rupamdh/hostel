@@ -1,13 +1,34 @@
 {% extends 'base.html' %}
-{% block 'title' %}
-    Mill
-{% endblock 'title' %}
-{% block 'name' %}Mill{% endblock 'name' %}
+{% block 'title' %}Mill{% endblock 'title' %}
 
 {% block 'content' %}
 
     <div class="entry-content">
-        
+        <h2>Your Mills</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Mill</th>
+                    </tr>
+                    
+                    {% for mill in mills %}
+                        <tr>
+                            <td>{{ mill.date|date:'d-m-Y' }}</td>
+                            <td>{{ mill.mill_count }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <th>Total</th>
+                        <th>{{ total_mill }}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
     </div>
 
 {% endblock 'content' %}
