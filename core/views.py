@@ -11,6 +11,10 @@ c_y = datetime.now().year
 
 # Create your views here.
 def home_page(request):
+    
+
+
+
     return render(request, 'index.html')
 
 @login_required
@@ -23,7 +27,7 @@ def dashboard(request):
     total_exp = exps.aggregate(Sum('amount'))['amount__sum'] if exps else 0
     total_diposit = total_bazar+total_exp
 
-    upc_bazar = Bazar.objects.filter(date__month=c_m, date__gte =datetime.now(), user_id=request.user.id, amount=0)
+    upc_bazar = Bazar.objects.filter(date__month=c_m, date__gt=datetime.now(), user_id=request.user.id, amount=0)
     today_bazar = Bazar.objects.get(date=datetime.today())
     tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day =datetime.now().day+1)
     
@@ -95,8 +99,7 @@ def bazar_add(request):
 def bazar_list(request):
     bazars = Bazar.objects.filter(date__month=c_m, user_id=request.user.id).exclude(amount=0).order_by('-date')
     total_bazar = bazars.aggregate(Sum('amount'))['amount__sum'] if bazars else 0
-    bookings = Bazar.objects.filter(date__month=c_m, user_id=request.user.id).exclude(amount__gt=0).order_by('date')
-    print(bookings)
+    bookings = Bazar.objects.filter(date__month=c_m, date__gt=datetime.today(), user_id=request.user.id).exclude(amount__gt=0).order_by('date')
 
 
     data = {

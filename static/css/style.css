@@ -111,6 +111,10 @@ h2, h3, h4, h5, h6 {
   background-color: #5db6d2 !important;
 }
 
+.bg-orange {
+  background-color: #ef4e22 !important;
+}
+
 .form-label {
   color: #080a0b;
   display: block;
