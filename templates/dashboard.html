@@ -31,19 +31,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
-                <div class="card">
-                    <div class="card-body dash-box">
-                        <div class="icn bg-warning"><i class="fa-solid fa-calendar-days text-light"></i></div>
-                        <div>
-                            <h6 class="mb-0">{{ upc_bazar.first.date }}</h6>
-                            <span>Upcoming Bazar</span>
+            
+            {% if upc_bazar %}
+                <div class="col-12 col-md-3">
+                    <div class="card">
+                        <div class="card-body dash-box">
+                            <div class="icn bg-warning"><i class="fa-solid fa-calendar-days text-light"></i></div>
+                            <div>
+                                <h6 class="mb-0">{{ upc_bazar.first.date }}</h6>
+                                <span>Upcoming Bazar</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
             
-            {% if upc_bazar %}
+            {% if today_bazar %}
                <div class="col-12 col-md-3">
                     <div class="card">
                         <div class="card-body dash-box">

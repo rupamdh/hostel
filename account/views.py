@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from .models import *
+from django.db import IntegrityError
 
 # Create your views here.
 def login_page(request):
@@ -26,5 +27,29 @@ def logout_url(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    try: 
+        profile = UserInfo.objects.get(user_id=request.user.id)
+    except UserInfo.DoesNotExist:
+        profile = ''
+    
+
+    if request.method == 'POST':
+        image = request.FILES['pro-image']
+        try:
+            UserInfo.objects.create(
+                user=request.user,
+                profile=image
+            )
+            return redirect('profile')
+        except IntegrityError:
+            user = UserInfo.objects.get(user_id=request.user.id)
+            user.profile = image
+            user.save()
+            return redirect('profile')
+
+
+    data = {
+        'profile' : profile
+    }
+    return render(request, 'profile.html', data)
 

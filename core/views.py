@@ -21,14 +21,17 @@ def home_page(request):
 def dashboard(request):
     bazars = Bazar.objects.filter(date__month=c_m, user_id=request.user.id)
     total_bazar = bazars.aggregate(Sum('amount'))['amount__sum'] if bazars else 0
-    mills = Mill.objects.filter(user_id=request.user.id)
+    mills = Mill.objects.filter(user_id=request.user.id, date__month=c_m)
     total_mill = mills.aggregate(Sum('mill_count'))['mill_count__sum'] if mills else 0
     exps = Establish.objects.filter(date__month=c_m, user_id=request.user.id)
     total_exp = exps.aggregate(Sum('amount'))['amount__sum'] if exps else 0
     total_diposit = total_bazar+total_exp
 
     upc_bazar = Bazar.objects.filter(date__month=c_m, date__gt=datetime.now(), user_id=request.user.id, amount=0)
-    today_bazar = Bazar.objects.get(date=datetime.today())
+    try:
+        today_bazar = Bazar.objects.get(date=datetime.today())
+    except Bazar.DoesNotExist:
+        today_bazar = ''
     tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day =datetime.now().day+1)
     
     
@@ -62,12 +65,15 @@ def quick_book(request):
 @login_required
 def bazar_add(request):
     users = User.objects.all().exclude(is_superuser=True).order_by('id')
-    bazars = Bazar.objects.filter(date__month=c_m, date__lte =datetime.now(), user_id=request.user.id, amount=0)
+    bazars = Bazar.objects.filter(date__lte=datetime.now(), user_id=request.user.id, amount=0).order_by('date')
 
     dates = []
     for bazar in bazars:
         dates.append(bazar.date.strftime("%Y-%m-%d"))
     bazar_date = dates[0] if len(dates) != 0 else ''
+    print(dates)
+    print(bazars)
+
 
     if request.method == 'POST':
         date = request.POST['date']
@@ -112,8 +118,9 @@ def bazar_list(request):
 
 @login_required
 def bazar_book(request):
-    bazars = Bazar.objects.filter(date__month=c_m).exclude(amount=0)
-    bookings = Bazar.objects.filter(date__month=c_m, amount=0)
+    bazars = Bazar.objects.all().exclude(amount=0)
+    bookings = Bazar.objects.filter(amount=0)
+    
 
     if request.method == 'POST':
         date = request.POST['date']

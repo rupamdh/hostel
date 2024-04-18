@@ -1,3 +1,4 @@
+{% load my_tag %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
                             </div>
 
                             <div class="profile">
-                                <span class="me-2">Hi, <span class="text-uppercase">{{ request.user.first_name }}</span></span><a href="{% url 'profile' %} "><img src="/static/images/user.jpg" alt=""></a>
+                                <span class="me-2">Hi, <span class="text-uppercase">{{ request.user.first_name }}</span></span><a href="{% url 'profile' %} "> <img src="/uploads/{{ request.user.id|get_profile_image }}" alt=""></a>
                             </div>
                         </div>
                     </div>
