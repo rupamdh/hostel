@@ -20,7 +20,6 @@ class Bazar(models.Model):
         return f'{self.date} - {self.user} - {self.amount}'
 
 
-
 class Establish(models.Model):
     EST_CHOICES = (
         ("GG", "Ginger & Garlic"),
@@ -37,4 +36,5 @@ class Establish(models.Model):
 
     def __str__(self):
         return f'{self.date} - {self.user} - {self.amount}'
+
 
