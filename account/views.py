@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -58,3 +59,29 @@ def profile(request):
     }
     return render(request, 'profile.html', data)
 
+
+def update_day_status(request):
+    day = request.POST['day']
+    get_day = UserInfo.objects.get(user_id=request.user.id)
+
+    if day == 'true':
+        get_day.day = True
+        get_day.save()
+    else:
+        get_day.day = False
+        get_day.save()
+
+    return JsonResponse({'success':True})
+
+def update_night_status(request):
+    night = request.POST['day']
+    get_night = UserInfo.objects.get(user_id=request.user.id)
+
+    if night == 'true':
+        get_night.night = True
+        get_night.save()
+    else:
+        get_night.night = False
+        get_night.save()
+
+    return JsonResponse({'success':True})

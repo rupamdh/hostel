@@ -46,6 +46,8 @@ urlpatterns = [
     path('delete-est/<int:id>/', est_delete, name='delete-est'),
 
     path('mill/', mill_list, name='mill'),
+    path('chday/', update_day_status, name='chday'),
+    path('chnight/', update_night_status, name='chnight'),
 ]
 
 if settings.DEBUG:

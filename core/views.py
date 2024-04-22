@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .models import *
 from datetime import datetime, timedelta
 from django.db.models import Sum
+from account.models import *
+
 
 c_m = datetime.now().month
 c_y = datetime.now().year
@@ -34,6 +36,8 @@ def dashboard(request):
         today_bazar = ''
     tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day =datetime.now().day+1)
     
+    userinfo = UserInfo.objects.get(user_id=request.user.id)
+
     
 
 
@@ -42,7 +46,9 @@ def dashboard(request):
         'total_mill' : total_mill,
         'upc_bazar' : upc_bazar,
         'today_bazar' : today_bazar,
-        'tmr_bazar' : tmr_bazar
+        'tmr_bazar' : tmr_bazar,
+        'day' : userinfo.day,
+        'night' : userinfo.night
     }
     return render(request, 'dashboard.html', data)
 
