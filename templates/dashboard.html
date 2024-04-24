@@ -4,112 +4,130 @@
 {% block 'content' %}
 
     <div class="entry-content">
-        <div class="d-flex justify-content-between">
-            <h2>Dashboard</h2>
-        </div>
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <h2>Dashboard</h2>
+            </div>
 
-        <div class="row g-2 mb-4">
-            <div class="col-6 col-md-3">
-                <div class="card">
-                    <div class="card-body dash-box">
-                        <div class="icn bg-info text-light"><i class="fa-solid fa-wallet"></i></div>
-                        <div>
-                            <h6 class="mb-0">₹ {{ total_diposit }}</h6>
-                            <span>Total Balance</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="card">
-                    <div class="card-body dash-box">
-                        <div class="icn bg-primary"><i class="fa-solid fa-pot-food text-light"></i></div>
-                        <div>
-                            <h6 class="mb-0">{{ total_mill }}</h6>
-                            <span>Total Meal</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {% if upc_bazar %}
+            <div class="row g-2 mb-4">
                 <div class="col-12 col-md-3">
+                    <div class="bill">
+                        <div class="title d-flex align-items-center">
+                            <i class="fa-solid fa-file-invoice-dollar"></i> <span>Bill - March, 2024</span>
+                        </div>
+                        <div class="content">
+                            <p class="d-flex justify-content-between mb-1"><span>Amount Due</span><span><strong>₹ 1450</strong></span></p>
+                            <p class="d-flex justify-content-between mb-1"><span>Issued on</span><span><strong>12-04-2024</strong></span></p>
+                            <p class="d-flex justify-content-between mb-3"><span>Due Date</span><span><strong>17-04-2024</strong></span></p>
+                            <p class="d-flex align-items-center justify-content-between">
+                                <a href="#" class="btn btn-outline-primary me-2 py-1">Details</a>
+                                <a href="#" class="btn btn-primary py-1">Pay Now</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
                     <div class="card">
                         <div class="card-body dash-box">
-                            <div class="icn bg-warning"><i class="fa-solid fa-calendar-days text-light"></i></div>
+                            <div class="icn bg-info text-light"><i class="fa-solid fa-wallet"></i></div>
                             <div>
-                                <h6 class="mb-0">{{ upc_bazar.first.date }}</h6>
-                                <span>Upcoming Bazar</span>
+                                <h6 class="mb-0">₹ {{ total_diposit }}</h6>
+                                <span>Total Balance</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endif %}
-            
-            {% if today_bazar %}
-               <div class="col-12 col-md-3">
+                <div class="col-6 col-md-3">
                     <div class="card">
                         <div class="card-body dash-box">
-                            <div class="icn bg-primary"><i class="fa-solid fa-calendar-day text-light"></i></div>
+                            <div class="icn bg-primary"><i class="fa-solid fa-pot-food text-light"></i></div>
                             <div>
-                                <h6 class="mb-0">{{ today_bazar.user.first_name }} {{ today_bazar.user.last_name }}</h6>
-                                <span>Today Bazar</span>
+                                <h6 class="mb-0">{{ total_mill }}</h6>
+                                <span>Total Meal</span>
                             </div>
                         </div>
                     </div>
-                </div> 
-            {% endif %}
-        
-            {% if tmr_bazar %}
+                </div>
+                
+                {% if upc_bazar %}
+                    <div class="col-12 col-md-3">
+                        <div class="card">
+                            <div class="card-body dash-box">
+                                <div class="icn bg-warning"><i class="fa-solid fa-calendar-days text-light"></i></div>
+                                <div>
+                                    <h6 class="mb-0">{{ upc_bazar.first.date }}</h6>
+                                    <span>Upcoming Bazar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                {% if today_bazar %}
                 <div class="col-12 col-md-3">
-                    <div class="card">
-                        <div class="card-body dash-box">
-                            <div class="icn bg-orange"><i class="fa-solid fa-calendar-week text-light"></i></div>
-                            <div>
-                                <h6 class="mb-0">{{ tmr_bazar.first.user.first_name }} {{ tmr_bazar.first.user.last_name }}</h6>
-                                <span>Tomorrow Bazar</span>
+                        <div class="card">
+                            <div class="card-body dash-box">
+                                <div class="icn bg-primary"><i class="fa-solid fa-calendar-day text-light"></i></div>
+                                <div>
+                                    <h6 class="mb-0">{{ today_bazar.user.first_name }} {{ today_bazar.user.last_name }}</h6>
+                                    <span>Today Bazar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                {% endif %}
+            
+                {% if tmr_bazar %}
+                    <div class="col-12 col-md-3">
+                        <div class="card">
+                            <div class="card-body dash-box">
+                                <div class="icn bg-orange"><i class="fa-solid fa-calendar-week text-light"></i></div>
+                                <div>
+                                    <h6 class="mb-0">{{ tmr_bazar.first.user.first_name }} {{ tmr_bazar.first.user.last_name }}</h6>
+                                    <span>Tomorrow Bazar</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% else %}
+                {% else %}
+                    <div class="col-12 col-md-3">
+                        <div class="card">
+                            <div class="card-body d-flex align-items-center justify-content-between">
+                                <div class="dash-box">
+                                    <div class="icn bg-orange"><i class="fa-solid fa-calendar-week text-light"></i></div>
+                                    <div>
+                                        <h6 class="mb-0">Not booked yet</h6>
+                                        <span>Tomorrow Bazar</span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <a href="{% url 'quick-book' %}">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
                 <div class="col-12 col-md-3">
                     <div class="card">
                         <div class="card-body d-flex align-items-center justify-content-between">
                             <div class="dash-box">
-                                <div class="icn bg-orange"><i class="fa-solid fa-calendar-week text-light"></i></div>
+                                <div class="icn bg-warning"><i class="fa-solid fa-calendar-week text-light"></i></div>
                                 <div>
-                                    <h6 class="mb-0">Not booked yet</h6>
-                                    <span>Tomorrow Bazar</span>
+                                    <h6 class="mb-0">Mill Status</h6>
+                                    <span>For Tomorrow</span>
                                 </div>
                             </div>
-                            <div class="">
-                                <a href="{% url 'quick-book' %}">Book Now</a>
+                            <div class="d-flex text-center">
+                                <div class="me-2">Day  <br><label class="switch">
+                                    <input type="checkbox" {% if day == True %}checked {% endif %} id="chday">
+                                    <span class="slider round"></span>
+                                    </label></div>
+                                <p>Night <br><label class="switch">
+                                    <input type="checkbox" checked id="chnight">
+                                    <span class="slider round"></span>
+                                    </label></p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            <div class="col-12 col-md-3">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center justify-content-between">
-                        <div class="dash-box">
-                            <div class="icn bg-warning"><i class="fa-solid fa-calendar-week text-light"></i></div>
-                            <div>
-                                <h6 class="mb-0">Mill Status</h6>
-                                <span>For Tomorrow</span>
-                            </div>
-                        </div>
-                        <div class="d-flex text-center">
-                            <div class="me-2">Day  <br><label class="switch">
-                                <input type="checkbox" {% if day == True %}checked {% endif %} id="chday">
-                                <span class="slider round"></span>
-                                </label></div>
-                            <p>Night <br><label class="switch">
-                                <input type="checkbox" checked id="chnight">
-                                <span class="slider round"></span>
-                                </label></p>
                         </div>
                     </div>
                 </div>

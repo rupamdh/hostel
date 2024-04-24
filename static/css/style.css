@@ -70,6 +70,11 @@ h2, h3, h4, h5, h6 {
   border-color: #563aac;
 }
 
+.btn-outline-primary {
+  border-color: #7a52f4 !important;
+  color: #7a52f4 !important;
+}
+
 .container {
   max-width: 1170px;
 }
@@ -151,7 +156,7 @@ h2, h3, h4, h5, h6 {
 ##Base
 ------------------------------------------------------------------------*/
 .page-header {
-  padding: 15px 15px;
+  padding: 15px 0;
   top: 0;
   width: 100%;
 }
@@ -209,7 +214,7 @@ h2, h3, h4, h5, h6 {
 }
 
 .entry-content {
-  padding: 0px 15px 20px;
+  padding: 0px 0 20px;
   margin: 0 0 60px;
   position: relative;
 }
@@ -492,4 +497,46 @@ input:focus + .slider {
 }
 .slider.round:before {
   border-radius: 50%;
+}
+
+.bill {
+  box-shadow: 0 0 10px #e1e1e1;
+  border-radius: 12px;
+  background-color: #fff;
+}
+.bill .title {
+  font-size: 18px;
+  padding: 20px 20px;
+  border-bottom: 2px dashed #ccc;
+  position: relative;
+}
+.bill .title i {
+  font-size: 25px;
+  color: #563aac;
+  margin-right: 10px;
+}
+.bill .title span {
+  font-weight: 600;
+  color: #000;
+}
+.bill .title::before, .bill .title::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #f1effe;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+}
+.bill .title::after {
+  left: auto;
+  right: -10px;
+}
+.bill .content {
+  padding: 20px 20px;
+}
+.bill .content p span:first-child {
+  color: #474747;
 }/*# sourceMappingURL=style.css.map */

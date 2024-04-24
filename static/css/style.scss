@@ -73,6 +73,10 @@ h2, h3, h4, h5, h6{
         border-color: #563aac;
     }
 }
+.btn-outline-primary{
+    border-color: $primary !important;
+    color: $primary !important;
+}
 
 .container{
     max-width: 1170px;
@@ -149,7 +153,7 @@ h2, h3, h4, h5, h6{
 ##Base
 ------------------------------------------------------------------------*/
 .page-header{
-    padding: 15px 15px;
+    padding: 15px 0;
     //position: fixed;
     top: 0;
     width: 100%;
@@ -210,7 +214,7 @@ h2, h3, h4, h5, h6{
     margin-right: 15px;
 }
 .entry-content{
-    padding: 0px 15px 20px;
+    padding: 0px 0 20px;
     margin: 0 0 60px;
     position: relative;
     &::before{
@@ -428,9 +432,6 @@ h2, h3, h4, h5, h6{
 }
 
 
-
-
-
 /*--------------------------------------------------------------------
 #Bazar Page
 -----------------------------------------------------------------------*/
@@ -470,7 +471,6 @@ h2, h3, h4, h5, h6{
         font-size: 20px;
     }
 }
-
 .switch {
 	position: relative;
 	display: inline-block;
@@ -530,4 +530,52 @@ input {
 	&:before {
 		border-radius: 50%;
 	}
+}
+
+.bill{
+    //padding: 20px 20px;
+    box-shadow: 0 0 10px #e1e1e1;
+    border-radius: 12px;
+    background-color: $white;
+    .title{
+        font-size: 18px;
+        padding: 20px 20px;
+        border-bottom: 2px dashed #ccc;
+        position: relative;
+        i{
+            font-size: 25px;
+            color: #563aac;
+            margin-right: 10px;
+        }
+        span{
+            font-weight: 600;
+            color: $black;
+        }
+        &::before,
+        &::after{
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: #f1effe;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+        }
+        &::after{
+            left: auto;
+            right: -10px;
+        }
+    }
+    .content{
+        padding: 20px 20px;
+        p{
+            span{
+                &:first-child{
+                    color: #474747;
+                }
+            }
+        }
+    }
 }

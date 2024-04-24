@@ -6,16 +6,15 @@
 {% block 'content' %}
 
 <div class="entry-content">
-
-     <div class="links">
-        {% with request.resolver_match.url_name as url_name %}
-            <ul>
-                <li><a href="{% url 'est-list' %}" {% if url_name == 'est-list' %}class="active"{% endif %}>Your Expenditures</a></li>
-                <li><a href="{% url 'add-est' %}" {% if url_name == 'add-est' %}class="active"{% endif %}>Add Expenditure</a></li>
-            </ul>
-        {% endwith %}
-    </div> 
-
+    <div class="container">
+        <div class="links">
+            {% with request.resolver_match.url_name as url_name %}
+                <ul>
+                    <li><a href="{% url 'est-list' %}" {% if url_name == 'est-list' %}class="active"{% endif %}>Your Expenditures</a></li>
+                    <li><a href="{% url 'add-est' %}" {% if url_name == 'add-est' %}class="active"{% endif %}>Add Expenditure</a></li>
+                </ul>
+            {% endwith %}
+        </div> 
 
         <h2>Edit Expenditure</h2>
         <div class="bazar-list">
@@ -41,11 +40,7 @@
             </form>
             
         </div>
-
-        
-    
-
-
+    </div>
 </div>
 
 

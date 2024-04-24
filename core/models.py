@@ -70,21 +70,27 @@ class Others(models.Model):
 
         #with transaction.atomic():        
         users = User.objects.all().exclude(is_superuser=True)
+        total_user = users.count()
 
         for user in users:
             try:
                 bill, created = Bill.objects.get_or_create(date=self.date, user=user)
-                total_mill = Mill.objects.filter(date__month=p_m, user=user).aggregate(Sum('mill_count'))['mill_count__sum']
-                # print(total_mill)
-                # print(bill)
+                my_mill = Mill.objects.filter(date__month=p_m, user=user).aggregate(Sum('mill_count'))['mill_count__sum']
+                total_mill = Mill.objects.filter(date__month=p_m).aggregate(Sum('mill_count'))['mill_count__sum']
+                total_bazar = Bazar.objects.filter(date__month=p_m).aggregate(Sum('amount'))['amount__sum']
+                mill_charge = (total_bazar+self.rice)/total_mill
+                establish = Establish.objects.filter(date__month=p_m).aggregate(Sum('amount'))['amount__sum'] if Establish.objects.filter(date__month=p_m) else 0
+                my_bazar = Bazar.objects.filter(date__month=p_m, user=user).aggregate(Sum('amount'))['amount__sum'] if Bazar.objects.filter(date__month=p_m, user=user) else 0
+                my_establish = Establish.objects.filter(date__month=p_m, user=user).aggregate(Sum('amount'))['amount__sum'] if Establish.objects.filter(date__month=p_m, user=user) else 0
+
                 #if created:
-                print('Hello')
-                bill.mill = total_mill
-                bill.mill_cost = 0
-                bill.establish = 0
-                bill.total_cost = 0
-                bill.diposit = 0
-                bill.due = 0
+                bill.mill = my_mill
+                bill.mill_cost = my_mill*mill_charge
+                bill.establish = (establish+self.cook+self.electric)/total_user
+                bill.total_cost = round(bill.mill_cost + bill.establish)
+                bill.diposit = my_establish+my_bazar
+                bill.due = round(bill.total_cost - bill.diposit)
+                print(bill.due)
                 bill.save()
             except IntegrityError:
                 print('Error')
