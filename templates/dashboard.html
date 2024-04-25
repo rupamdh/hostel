@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load my_tag %}
 {% block 'title' %}Dashboard | Droupadi Mess{% endblock 'title' %}
 
 {% block 'content' %}
@@ -13,12 +14,12 @@
                 <div class="col-12 col-md-3">
                     <div class="bill">
                         <div class="title d-flex align-items-center">
-                            <i class="fa-solid fa-file-invoice-dollar"></i> <span>Bill - March, 2024</span>
+                            <i class="fa-solid fa-file-invoice-dollar"></i> <span>Bill - {{ bill.date|date:'m, Y' }}</span>
                         </div>
                         <div class="content">
-                            <p class="d-flex justify-content-between mb-1"><span>Amount Due</span><span><strong>₹ 1450</strong></span></p>
-                            <p class="d-flex justify-content-between mb-1"><span>Issued on</span><span><strong>12-04-2024</strong></span></p>
-                            <p class="d-flex justify-content-between mb-3"><span>Due Date</span><span><strong>17-04-2024</strong></span></p>
+                            <p class="d-flex justify-content-between mb-1"><span>Amount Due</span><span><strong>₹ {{ bill.due }}</strong></span></p>
+                            <p class="d-flex justify-content-between mb-1"><span>Issued on</span><span><strong>{{ bill.date|date:'d-m-Y' }}</strong></span></p>
+                            <p class="d-flex justify-content-between mb-3"><span>Due Date</span><span><strong>{{ bill.date|date:'d-m-Y' }}</strong></span></p>
                             <p class="d-flex align-items-center justify-content-between">
                                 <a href="#" class="btn btn-outline-primary me-2 py-1">Details</a>
                                 <a href="#" class="btn btn-primary py-1">Pay Now</a>

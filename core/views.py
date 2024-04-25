@@ -34,10 +34,14 @@ def dashboard(request):
         today_bazar = Bazar.objects.get(date=datetime.today())
     except Bazar.DoesNotExist:
         today_bazar = ''
-    tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day =datetime.now().day+1)
+    tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day=datetime.now().day+1)
     
     userinfo = UserInfo.objects.get(user_id=request.user.id)
 
+    try:
+        bill = Bill.objects.get(date__month=datetime.now().month-1, user=request.user)
+    except Bill.DoesNotExist:
+        bill = ''
     
 
 
@@ -48,7 +52,8 @@ def dashboard(request):
         'today_bazar' : today_bazar,
         'tmr_bazar' : tmr_bazar,
         'day' : userinfo.day,
-        'night' : userinfo.night
+        'night' : userinfo.night,
+        'bill' : bill
     }
     return render(request, 'dashboard.html', data)
 

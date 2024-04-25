@@ -16,20 +16,22 @@
                             <img src="/static/images/user.jpg" alt="" class="mb-2">
                         {% endif %}
 
-                        <form method="post" enctype="multipart/form-data">
+                        {% comment %} <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="file" name="pro-image" accept="image/png, image/gif, image/jpeg">
                             <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
+                        </form> {% endcomment %}
                         <h6>{{ request.user.first_name }} {{ request.user.last_name }}</h6>
                     </div>
 
                     <div class="profile-options">
-                        <div class="item">
-                            <div class="icon">
-
+                        <a href="#">
+                            <div class="item">
+                                <div class="icon"><i class="fa-solid fa-gear"></i></div>
+                                <p>Account Settings</p>
                             </div>
-                        </div>
+                        </a>
+                        
                     </div>
 
                     <a href="{% url 'logout' %}" class="btn btn-primary w-100">Log out</a>

@@ -90,7 +90,6 @@ class Others(models.Model):
                 bill.total_cost = round(bill.mill_cost + bill.establish)
                 bill.diposit = my_establish+my_bazar
                 bill.due = round(bill.total_cost - bill.diposit)
-                print(bill.due)
                 bill.save()
             except IntegrityError:
                 print('Error')
