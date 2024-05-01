@@ -1,23 +1,47 @@
 {% extends 'base.html' %}
+
 {% block 'title' %}Profile | Droupadi Mess{% endblock 'title' %}
 
 {% block 'content' %}
 
     <div class="entry-content">
-        <div class="text-center profile-img mb-3">
-            <img src="/static/images/user.jpg" alt="" class="mb-2">
-            <h6>{{ request.user.first_name }} {{ request.user.last_name }}</h6>
-        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9">
 
-        <div class="profile-options">
-            <div class="item">
-                <div class="icon">
+                    <div class="text-center profile-img mb-3">
+                        {% if profile %}
+                            <img src="/uploads/{{profile.profile}}" alt="" class="mb-2">
+                        {% else %}
+                            <img src="/static/images/user.jpg" alt="" class="mb-2">
+                        {% endif %}
 
+                        {% comment %} <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="pro-image" accept="image/png, image/gif, image/jpeg">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form> {% endcomment %}
+                        <h6>{{ request.user.first_name }} {{ request.user.last_name }}</h6>
+                    </div>
+
+                    <div class="profile-options">
+                        <a href="#">
+                            <div class="item">
+                                <div class="icon"><i class="fa-solid fa-gear"></i></div>
+                                <p>Account Settings</p>
+                            </div>
+                        </a>
+                        
+                    </div>
+
+                    <a href="{% url 'logout' %}" class="btn btn-primary w-100">Log out</a>
                 </div>
             </div>
         </div>
 
-        <a href="{% url 'logout' %}" class="btn btn-primary w-100">Log out</a>
+        
+
+        
     </div>
 
 {% endblock 'content' %}

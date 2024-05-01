@@ -5,32 +5,39 @@
 {% block 'content' %}
 
 <div class="entry-content">
-    
-    <div class="links">
-        {% with request.resolver_match.url_name as url_name %}
-        <ul>
-            <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
-            <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
-            <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazars</a></li>
-        </ul>
-        {% endwith %}
-    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="links">
+                    {% with request.resolver_match.url_name as url_name %}
+                        <ul>
+                            <li><a href="{% url 'bazar-list' %}" {% if url_name == 'bazar-list' %}class="active"{% endif %}>Your Bazars</a></li>
+                            <li><a href="{% url 'bazar-book' %}" {% if url_name == 'bazar-book' %}class="active"{% endif %}>Book Bazar</a></li>
+                            <li><a href="{% url 'bazar-add' %}" {% if url_name == 'bazar-add' %}class="active"{% endif %}>Add Bazars</a></li>
+                        </ul>
+                    {% endwith %}
+                </div>
 
-    <div class="d-flex justify-content-between">
-        <h2>Book Your Date</h2>
-    </div>
+                <div class="d-flex justify-content-between">
+                    <h2>Book Your Date</h2>
+                </div>
 
-    
-    <div class="card mb-4">
-        <div class="card-body book-bazar">
-            <form method="post">
-                {% csrf_token %}
-                <div class="mb-3" id="datepicker" ></div> 
-                <input type="hidden" id="dateHidden" name="date">               
-                <button type="submit" class="btn btn-primary w-100">Book</button>
-            </form>
+                
+                <div class="card mb-4">
+                    <div class="card-body book-bazar">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3" id="datepicker" ></div> 
+                            <input type="hidden" id="dateHidden" name="date">               
+                            <button type="submit" class="btn btn-primary w-100">Book</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
+    
 
 
 
@@ -58,8 +65,8 @@
             altField: "#dateHidden",
             dateFormat: "yy-mm-dd",
             dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-            minDate: "-4d",
-            maxDate: "+4d",
+            minDate: "2024-03-01",
+            maxDate: "2024-03-31",
             beforeShowDay: function(date) {
                 var dateString = $.datepicker.formatDate('yy-mm-dd', date);
                 if (addedDates[dateString]) {

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)ljv_1btmy1l(-es($8x#&kw2b&5=l3m!y0jg$51&4blsc8w@2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,6 +84,17 @@ DATABASES = {
     }
 }
 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'my_mess',
+#         'USER': 'admin',
+#         'PASSWORD': '531L6mU4uc4bJKK5j66SWt5g',
+#         'HOST': 'badly-huge-aphid-iad.a1.pgedge.io',  # Typically 'localhost' or '127.0.0.1' for local development
+#         'PORT': '5432',  # Typically '5432' for PostgreSQL
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

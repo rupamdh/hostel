@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .models import *
 from datetime import datetime, timedelta
 from django.db.models import Sum
+from account.models import *
+
 
 c_m = datetime.now().month
 c_y = datetime.now().year
@@ -11,22 +13,35 @@ c_y = datetime.now().year
 
 # Create your views here.
 def home_page(request):
+    
+
+
+
     return render(request, 'index.html')
 
 @login_required
 def dashboard(request):
     bazars = Bazar.objects.filter(date__month=c_m, user_id=request.user.id)
     total_bazar = bazars.aggregate(Sum('amount'))['amount__sum'] if bazars else 0
-    mills = Mill.objects.filter(user_id=request.user.id)
+    mills = Mill.objects.filter(user_id=request.user.id, date__month=c_m)
     total_mill = mills.aggregate(Sum('mill_count'))['mill_count__sum'] if mills else 0
     exps = Establish.objects.filter(date__month=c_m, user_id=request.user.id)
     total_exp = exps.aggregate(Sum('amount'))['amount__sum'] if exps else 0
     total_diposit = total_bazar+total_exp
 
-    upc_bazar = Bazar.objects.filter(date__month=c_m, date__gte =datetime.now(), user_id=request.user.id, amount=0)
-    today_bazar = Bazar.objects.get(date=datetime.today())
-    tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day =datetime.now().day+1)
+    upc_bazar = Bazar.objects.filter(date__month=c_m, date__gt=datetime.now(), user_id=request.user.id, amount=0)
+    try:
+        today_bazar = Bazar.objects.get(date=datetime.today())
+    except Bazar.DoesNotExist:
+        today_bazar = ''
+    tmr_bazar = Bazar.objects.filter(date__month=c_m, date__day=datetime.now().day+1)
     
+    userinfo = UserInfo.objects.get(user_id=request.user.id)
+
+    try:
+        bill = Bill.objects.get(date__month=datetime.now().month-1, user=request.user)
+    except Bill.DoesNotExist:
+        bill = ''
     
 
 
@@ -35,7 +50,10 @@ def dashboard(request):
         'total_mill' : total_mill,
         'upc_bazar' : upc_bazar,
         'today_bazar' : today_bazar,
-        'tmr_bazar' : tmr_bazar
+        'tmr_bazar' : tmr_bazar,
+        'day' : userinfo.day,
+        'night' : userinfo.night,
+        'bill' : bill
     }
     return render(request, 'dashboard.html', data)
 
@@ -58,12 +76,15 @@ def quick_book(request):
 @login_required
 def bazar_add(request):
     users = User.objects.all().exclude(is_superuser=True).order_by('id')
-    bazars = Bazar.objects.filter(date__month=c_m, date__lte =datetime.now(), user_id=request.user.id, amount=0)
+    bazars = Bazar.objects.filter(date__lte=datetime.now(), user_id=request.user.id, amount=0).order_by('date')
 
     dates = []
     for bazar in bazars:
         dates.append(bazar.date.strftime("%Y-%m-%d"))
     bazar_date = dates[0] if len(dates) != 0 else ''
+    print(dates)
+    print(bazars)
+
 
     if request.method == 'POST':
         date = request.POST['date']
@@ -95,8 +116,7 @@ def bazar_add(request):
 def bazar_list(request):
     bazars = Bazar.objects.filter(date__month=c_m, user_id=request.user.id).exclude(amount=0).order_by('-date')
     total_bazar = bazars.aggregate(Sum('amount'))['amount__sum'] if bazars else 0
-    bookings = Bazar.objects.filter(date__month=c_m, user_id=request.user.id).exclude(amount__gt=0).order_by('date')
-    print(bookings)
+    bookings = Bazar.objects.filter(date__month=c_m, date__gt=datetime.today(), user_id=request.user.id).exclude(amount__gt=0).order_by('date')
 
 
     data = {
@@ -109,8 +129,9 @@ def bazar_list(request):
 
 @login_required
 def bazar_book(request):
-    bazars = Bazar.objects.filter(date__month=c_m).exclude(amount=0)
-    bookings = Bazar.objects.filter(date__month=c_m, amount=0)
+    bazars = Bazar.objects.all().exclude(amount=0)
+    bookings = Bazar.objects.filter(amount=0)
+    
 
     if request.method == 'POST':
         date = request.POST['date']
