@@ -250,7 +250,19 @@ def est_delete(request, id):
 
 @login_required
 def get_bill(request):
-    return render(request, 'bill.html')
+    users = User.objects.all().exclude(is_superuser=True)
+    total_mill = 0
+    for user in users:
+        mills = Mill.objects.filter(date__month=p_m, user=user)
+        mill = mills.aggregate(Sum('mill_count'))['mill_count__sum'] if mills else 0
+        total_mill += mill
+    print(total_mill)
+
+
+    data = {
+        'users' : users
+    }
+    return render(request, 'bill.html', data)
 
 
 

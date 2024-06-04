@@ -85,7 +85,7 @@ class Others(models.Model):
 
                 #if created:
                 bill.mill = my_mill
-                bill.mill_cost = my_mill*mill_charge
+                bill.mill_cost = round(my_mill*mill_charge)
                 bill.establish = (establish+self.cook+self.electric)/total_user
                 bill.total_cost = round(bill.mill_cost + bill.establish)
                 bill.diposit = my_establish+my_bazar

@@ -76,6 +76,9 @@ h2, h3, h4, h5, h6{
 .btn-outline-primary{
     border-color: $primary !important;
     color: $primary !important;
+    &:hover{
+        color: $white !important;
+    }
 }
 
 .container{
@@ -656,7 +659,6 @@ input {
 .title{
     color: $black;
     font-size: 46px;
-    font-family: "Playfair Display", serif;
 }
 // .service-sec{
 //     background-color: #f8f8f8;

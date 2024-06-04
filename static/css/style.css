@@ -74,6 +74,9 @@ h2, h3, h4, h5, h6 {
   border-color: #7a52f4 !important;
   color: #7a52f4 !important;
 }
+.btn-outline-primary:hover {
+  color: #fff !important;
+}
 
 .container {
   max-width: 1170px;
@@ -621,7 +624,6 @@ input:focus + .slider {
 .title {
   color: #000;
   font-size: 46px;
-  font-family: "Playfair Display", serif;
 }
 
 .serv-box {
