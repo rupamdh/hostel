@@ -82,8 +82,7 @@ def bazar_add(request):
     for bazar in bazars:
         dates.append(bazar.date.strftime("%Y-%m-%d"))
     bazar_date = dates[0] if len(dates) != 0 else ''
-    print(dates)
-    print(bazars)
+
 
 
     if request.method == 'POST':
@@ -247,6 +246,11 @@ def est_delete(request, id):
     exp.delete()
 
     return redirect('est-list')
+
+
+@login_required
+def get_bill(request):
+    return render(request, 'bill.html')
 
 
 

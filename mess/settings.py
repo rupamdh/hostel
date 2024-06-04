@@ -143,3 +143,18 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# from django.contrib.auth import get_user_model
+# def reset_password(u, password):
+#     try:
+#         user = get_user_model().objects.get(username=u)
+#     except:
+#         return "User could not be found"
+#     user.set_password(password)
+#     user.save()
+#     return "Password has been changed successfully"
+
+
+# reset_password('8101726133', 'nopass')

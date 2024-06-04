@@ -48,6 +48,8 @@ urlpatterns = [
     path('mill/', mill_list, name='mill'),
     path('chday/', update_day_status, name='chday'),
     path('chnight/', update_night_status, name='chnight'),
+
+    path('bill/', get_bill, name='bill'),
 ]
 
 if settings.DEBUG:
