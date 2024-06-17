@@ -5,13 +5,13 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.db import IntegrityError
 from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 def login_page(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
-    
-    
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -19,12 +19,13 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-
             if request.POST.get('next'):
                 url = request.POST.get('next')
             else:
                 url = reverse('dashboard')  
             return redirect(url)
+        else:
+            messages.error(request, 'Wrong Mobile or Password')
     return render(request, 'login.html')
 
 

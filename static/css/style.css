@@ -111,6 +111,10 @@ h2, h3, h4, h5, h6 {
   color: #7a52f4 !important;
 }
 
+.text-danger {
+  color: #ef3224 !important;
+}
+
 .bg-primary {
   background-color: #7a52f4 !important;
 }
@@ -532,6 +536,7 @@ input:focus + .slider {
   box-shadow: 0 0 10px #e1e1e1;
   border-radius: 12px;
   background-color: #fff;
+  position: relative;
 }
 .bill .title {
   font-size: 18px;
@@ -565,9 +570,20 @@ input:focus + .slider {
 }
 .bill .content {
   padding: 20px 20px;
+  position: relative;
+  z-index: 2;
 }
 .bill .content p span:first-child {
   color: #474747;
+}
+
+.due {
+  position: absolute;
+  opacity: 0.15;
+  max-width: 170px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
 }
 
 /*-------------------------------------------------------------
@@ -661,4 +677,43 @@ input:focus + .slider {
 .team-cont {
   padding: 20px;
   background-color: #fff;
+}
+
+/*-------------------------------------------------------------------------------
+#bill
+---------------------------------------------------------------------------------*/
+.bill-details {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px #e8e8e8;
+  position: relative;
+}
+.bill-details h6 {
+  text-transform: uppercase;
+  color: #7a52f4;
+  margin-bottom: 10px;
+}
+
+.inv-no {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.bill-table {
+  width: 100%;
+}
+.bill-table tr td {
+  color: #000;
+  padding: 5px 0;
+}
+.bill-table tr td:last-child {
+  text-align: right;
+  font-weight: 600;
+}
+.bill-table .bt {
+  border-top: 1px solid #ddd;
+}
+.bill-table .red {
+  color: #ef3224;
 }/*# sourceMappingURL=style.css.map */

@@ -112,6 +112,9 @@ h2, h3, h4, h5, h6{
 .text-primary{
     color: $primary !important;
 }
+.text-danger{
+    color: $danger !important;
+}
 .bg-primary{
     background-color: $primary !important;
 }
@@ -562,6 +565,7 @@ input {
     box-shadow: 0 0 10px #e1e1e1;
     border-radius: 12px;
     background-color: $white;
+    position: relative;
     .title{
         font-size: 18px;
         padding: 10px 20px;
@@ -595,6 +599,8 @@ input {
     }
     .content{
         padding: 20px 20px;
+        position: relative;
+        z-index: 2;
         p{
             span{
                 &:first-child{
@@ -603,6 +609,14 @@ input {
             }
         }
     }
+}
+.due{
+    position: absolute;
+    opacity: 0.15;
+    max-width: 170px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
 }
 
 
@@ -698,4 +712,41 @@ input {
 .team-cont{
     padding: 20px;
     background-color: $white;
+}
+
+/*-------------------------------------------------------------------------------
+#bill
+---------------------------------------------------------------------------------*/
+.bill-details{
+    background-color: $white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px #e8e8e8;
+    position: relative;
+    h6{
+        text-transform: uppercase;
+        color: $primary;
+        margin-bottom: 10px;
+    }
+}
+.inv-no{
+    font-weight: 600;
+    font-size: 16px;
+}
+.bill-table{
+    width: 100%;
+    tr td{
+        color: $black;
+        padding: 5px 0;
+        &:last-child{
+            text-align: right;
+            font-weight: 600;
+        }
+    }
+    .bt{
+        border-top: 1px solid #ddd;
+    }
+    .red{
+        color: $danger;
+    }
 }

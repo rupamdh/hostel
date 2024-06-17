@@ -45,11 +45,12 @@ class Bill(models.Model):
     date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mill = models.IntegerField(default=0)
-    mill_cost = models.FloatField(default=0)
-    establish = models.FloatField(default=0)
+    mill_cost = models.IntegerField(default=0)
+    establish = models.IntegerField(default=0)
     total_cost = models.IntegerField(default=0)
     diposit = models.IntegerField(default=0)
     due = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
 
     class Meta:
         unique_together = (('date', 'user'),)
@@ -64,6 +65,7 @@ class Others(models.Model):
     electric = models.IntegerField()
     cook = models.IntegerField()
     rice = models.IntegerField()
+    issue_date = models.DateField(auto_now_add=True, editable=False)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -86,9 +88,10 @@ class Others(models.Model):
                 #if created:
                 bill.mill = my_mill
                 bill.mill_cost = round(my_mill*mill_charge)
-                bill.establish = (establish+self.cook+self.electric)/total_user
+                bill.establish = round((establish+self.cook+self.electric)/total_user)
                 bill.total_cost = round(bill.mill_cost + bill.establish)
                 bill.diposit = my_establish+my_bazar
+
                 bill.due = round(bill.total_cost - bill.diposit)
                 bill.save()
             except IntegrityError:

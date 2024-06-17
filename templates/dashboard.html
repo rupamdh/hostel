@@ -11,6 +11,7 @@
             </div>
 
             <div class="row g-2 mb-4">
+                {% if bill.status == False %}
                 <div class="col-12 col-md-3">
                     <div class="bill">
                         <div class="title d-flex align-items-center">
@@ -18,15 +19,23 @@
                         </div>
                         <div class="content">
                             <p class="d-flex justify-content-between mb-1"><span>Amount Due</span><span><strong>₹ {{ bill.due }}</strong></span></p>
-                            <p class="d-flex justify-content-between mb-1"><span>Issued on</span><span><strong>{{ bill.date|date:'d-m-Y' }}</strong></span></p>
-                            <p class="d-flex justify-content-between mb-3"><span>Due Date</span><span><strong>{{ bill.date|date:'d-m-Y' }}</strong></span></p>
+                            <p class="d-flex justify-content-between mb-1"><span>Issued on</span><span class="fw-semibold">{{ bill.date|date:'M d, Y' }}</span></p>
+                            <p class="d-flex justify-content-between mb-3"><span>Due Date</span><span class="fw-semibold">{{ bill.id|due_date }}</span></p>
                             <p class="d-flex align-items-center justify-content-between">
-                                <a href="#" class="btn btn-outline-primary me-2 pt-1 pb-2 w-100">View Details</a>
+                                <a href="{% url 'bill' %}" class="btn btn-outline-primary me-2 pt-1 pb-2 w-100">View Details</a>
                                 {% comment %} <a href="#" class="btn btn-primary py-1">Pay Now</a> {% endcomment %}
                             </p>
                         </div>
+
+                        {% if bill.status == False %}
+                            <img src="/static/images/due.png" alt="" class="due">
+                        {% else %}
+                            <img src="/static/images/paid.png" alt="" class="due">
+                        {% endif %}
+                        
                     </div>
                 </div>
+                {% endif %}
                 <div class="col-6 col-md-3">
                     <div class="card">
                         <div class="card-body dash-box">
@@ -125,7 +134,7 @@
                                     <span class="slider round"></span>
                                     </label></div>
                                 <p>Night <br><label class="switch">
-                                    <input type="checkbox" checked id="chnight">
+                                    <input type="checkbox" {% if night == True %}checked {% endif %} id="chnight">
                                     <span class="slider round"></span>
                                     </label></p>
                             </div>
@@ -146,7 +155,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url: '/chday/',
+                    url: '/chnight/',
                     data: {
                         day: day,
                         'csrfmiddlewaretoken': '{{ csrf_token }}'
@@ -162,7 +171,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url: '/chnight/',
+                    url: '/chday/',
                     data: {
                         day: day,
                         'csrfmiddlewaretoken': '{{ csrf_token }}'

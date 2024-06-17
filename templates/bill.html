@@ -1,13 +1,62 @@
 {% extends 'base.html' %}
-{% block 'title' %}Bill{% endblock 'title' %}
+{% block 'title' %}Bill | Angel Mess{% endblock 'title' %}
 
 {% block 'content' %}
 
     <div class="entry-content">
         <div class="container">
-            <h2>Bill</h2>
 
-            
+            <div class="bill-details">
+
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <h6>Invoice - May</h6>
+                        <p> Invoice no: <span class="inv-no">#{{bill.id}}</span> <br>
+                        Issued on: <span class="inv-no">June 5, 2024</span> <br>
+                        Due Date: <span class="inv-no">June 10, 2024</span></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <table class="bill-table mt-3 mb-4">
+                    <tbody>
+                        <tr>
+                            <td>Total Mill</td>
+                            <td>{{bill.mill}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mill Cost</td>
+                            <td>₹ {{bill.mill_cost}}</td>
+                        </tr>
+                        <tr>
+                            <td class="pb-2">Establish Charge</td>
+                            <td class="pb-2">₹ {{bill.establish}}</td>
+                        </tr>
+                        <tr>
+                            <td class="bt pt-2">Total</td>
+                            <td class="bt pt-2">₹ {{bill.total_cost}}</td>
+                        </tr>
+                        <tr>
+                            <td>Diposit</td>
+                            <td>₹ {{bill.diposit}}</td>
+                        </tr>
+                        <tr>
+                            <td>Due</td>
+                            <td>₹ {{bill.due}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="fw-medium mb-1">Thank You!</p>
+                <p><em><small>*Please clear your due within due date.</small></em></p>
+
+                {% if bill.status == False %}
+                    <img src="/static/images/due.png" alt="" class="due">
+                {% else %}
+                    <img src="/static/images/paid.png" alt="" class="due">
+                {% endif %}
+            </div>
 
         </div>
     </div>

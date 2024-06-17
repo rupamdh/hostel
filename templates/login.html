@@ -28,6 +28,13 @@
 
                         <h1 class="text-center">Log in</h1>
                         <p class="text-center mb-4">Enter your details to continue</p>
+                        
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="text-danger">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                            
                         <form method="post">
                             {% csrf_token %}
                             <div class="mb-3 input-box">
