@@ -5,7 +5,7 @@ from .models import *
 from datetime import datetime, timedelta
 from django.db.models import Sum
 from account.models import *
-
+from django.contrib.auth.models import User
 
 c_m = datetime.now().month
 c_y = datetime.now().year
@@ -38,6 +38,11 @@ def dashboard(request):
     
     userinfo = UserInfo.objects.get(user_id=request.user.id)
 
+    
+    infos = UserInfo.objects.all()
+    day_count = UserInfo.objects.filter(day=True).count()
+    night_count = UserInfo.objects.filter(night=True).count()
+
     try:
         bill = Bill.objects.get(date__month=datetime.now().month-1, user=request.user)
     except Bill.DoesNotExist:
@@ -53,7 +58,10 @@ def dashboard(request):
         'tmr_bazar' : tmr_bazar,
         'day' : userinfo.day,
         'night' : userinfo.night,
-        'bill' : bill
+        'bill' : bill,
+        'infos': infos,
+        'day_count' : day_count,
+        'night_count' : night_count
     }
     return render(request, 'dashboard.html', data)
 
@@ -133,13 +141,15 @@ def bazar_book(request):
     
 
     if request.method == 'POST':
-        date = request.POST['date']
-        Bazar.objects.create(
-            date=date,
-            user=request.user,
-            amount=0
-        )
-        
+        try:
+            date = request.POST['date']
+            Bazar.objects.create(
+                date=date,
+                user=request.user,
+                amount=0
+            )
+        except IntegrityError:
+            print('Error')
 
 
     data = {
@@ -219,9 +229,11 @@ def add_est(request):
 @login_required
 def est_list(request):
     exps = Establish.objects.filter(date__month=c_m, user_id=request.user.id)
+    total_est = exps.aggregate(Sum('amount'))['amount__sum']
 
     data = {
-        'exps' : exps
+        'exps' : exps,
+        'total_est' : total_est
     }
     return render(request, 'est-list.html', data)
 
