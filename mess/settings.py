@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'mess.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'my_mess',
-#         'USER': 'admin',
-#         'PASSWORD': '531L6mU4uc4bJKK5j66SWt5g',
-#         'HOST': 'badly-huge-aphid-iad.a1.pgedge.io',  # Typically 'localhost' or '127.0.0.1' for local development
-#         'PORT': '5432',  # Typically '5432' for PostgreSQL
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'wKsIGTy80cNLKTqIFxTK',
+        'HOST': 'database-1.crigec06q8pz.ap-south-1.rds.amazonaws.com',  # Typically 'localhost' or '127.0.0.1' for local development
+        'PORT': '5432',  # Typically '5432' for PostgreSQL
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -131,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
