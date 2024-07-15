@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block 'title' %}Add Mill{% endblock 'title' %}
+{% block 'content' %} 
+    <div class="container mx-auto mt-5">
+        <h1 class="text-4xl font-bold text-center">Add</h1>
+        
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+            
+        <form method="post">
+            {% csrf_token %}
+            <input type="date" name="date" class="border border-gray-500 mb-4">
+            {% for user in users %}
+                <div class="flex mb-3 items-center gap-4">
+                    <p class="font-bold min-w-20">{{ user.first_name }}</p>
+                    <input type="number" name="mill_{{user.id}}" class="border border-gray-500" >
+                    <input type="number" name="g_mill{{user.id}}" class="border border-gray-500" value="0">
+                </div>
+            {% endfor %}
+            <button type="submit" class="bg-gray-400 py-2 px-6">SAVE</button>
+        </form>
+        
+            
+    </div>        
+{% endblock 'content' %}
