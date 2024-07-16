@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>{% block 'title' %}{% endblock 'title' %}</title>
+	<link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="/static/fontawesome/css/all.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" >
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper flex">
+        <div class="sidebar border-r border-gray-200">
+            <div class="logo py-3">
+                <h1 class="text-3xl font-bold">ADMIN</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <ul class="menu">
+                    <li class="active">
+                        <a href="#"><i class="fa-regular fa-grid-horizontal"></i> Dashboards </a>
+                        <ul>
+                            <li class="active"><a href="#">Light Sidebar</a></li>
+                            <li><a href="#">Dark Sidebar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-regular fa-circle-user"></i> Public Profile </a>
+                        <ul>
+                            <li><a href="#">Profiles</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Works</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-regular fa-gear"></i> Settings </a>
+                        <ul>
+                            <li><a href="#">Account Home</a></li>
+                            <li><a href="#">Billing</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="w-full">
+
+        </div>
+    </div>
+    <main class="site">
+        
+        {% block 'content' %} 
+        
+        {% endblock 'content' %}
+
+    </main>
+
+
+    
+
+   
+   
+
+    
+
+    <script>
+        // tailwind.config = {
+        //     theme: {
+        //         extend: {
+        //             colors: {
+        //                 transparent: 'transparent',
+        //                 'white': '#FFFFFF',
+        //                 'yellow': '#FFE047',
+        //                 'yellow2': '#E6C72E',
+        //                 'gray': '#302c55',
+        //                 'gray2': '#2B293D',
+        //                 'gray4':'#2D2C3C',
+        //                 'gray3':'#A9A9A9',
+        //                 'blue':'#4539B4',
+        //                 'text' : '#5A5A5A'
+        //             },
+        //         }
+        //     }
+        // }
+    </script>
+    <script src="/static/js/main.js"></script>
+    
+</body>
+
+</html>
